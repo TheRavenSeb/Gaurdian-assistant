@@ -1,4 +1,5 @@
 import speech_recognition as sr
+import requests
 
 def recognize_speech(recognizer, microphone):
     print("Listening...")
@@ -36,8 +37,24 @@ def recognize_speech_loop(recognizer, microphone):
             break
         elif text == "what is your name":
             print("My name is Gaudian and I am a speech recognition bot. I am here to help you with your tasks.")
+        elif text == "what is the time":
+            print("Sorry, I am not connected to the internet. I cannot provide the current time.")
+        elif text == "what is the date":
+            print("Sorry, I am not connected to the internet. I cannot provide the current date.")
+
+        elif text == "How many servers does Arcane Magica Have":
+            ## make a  request to https://arcane-magica.com/api/get/online
+            ## get the response and print it
+            reponse = requests.get("https://arcane-magica.com/api/get/online")
+            print(f"Arcane Magica has {reponse.length} servers online.")
+
+        elif text == "what is your purpose":
+            print("I am a speech recognition bot created by TheRavenSeb. I am here to help you with your tasks and for you to upgrade as you learn my langagues.")
+            
+
         elif text is not None:
             print("You said: " + text)
 
+            
 # Call the function to start speech recognition
 startup()
